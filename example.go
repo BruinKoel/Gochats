@@ -84,7 +84,7 @@ func GetPerson(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var person Person
 	if err := db.Where("id = ?", id).First(&person).Error; err != nil {
-		c.AbortWithStatus(404)
+		c.AbortWithStatus(400)
 		fmt.Println(err)
 	} else {
 		c.JSON(200, person)

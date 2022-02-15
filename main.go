@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/DrBruinKool/Gochats/code"
 	"gorm.io/driver/sqlite" // Sqlite driver based on GGO
 	// "github.com/glebarez/sqlite" // Pure go SQLite driver, checkout https://github.com/glebarez/sqlite for details
 	"github.com/gin-gonic/gin"
@@ -18,13 +19,19 @@ func main() {
 
 	// Add table suffix when creating tables
 
-	daan := User{Name: kek, ID: 1}
-	db.AutoMigrate().table(&User{}, &Message{})
+	// TODO: Automigrate Daan
+	if err := db.AutoMigrate(&code.User{}, &code.Message{}); err != nil {
+		println("Daan kon ik boeie")
+	}
+
+	daan := &code.User{Name: "Daan"}
+	db.FirstOrCreate(daan)
+	db.FirstOrCreate(&code.Message{User: *daan, Content: "Boeie"})
 
 	r.GET("/ping", func(c *gin.Context) {
 
 		c.JSON(200, gin.H{
-			"Message": "pong",
+			"Message": " yeah",
 		})
 	})
 

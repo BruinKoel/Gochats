@@ -1,4 +1,4 @@
-module example.com/m
+module github.com/DrBruinKool/Gochats
 
 go 1.17
 
