@@ -13,7 +13,7 @@ type User struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
-type message struct {
+type Message struct {
 	ID      uint
 	Time    time.Time
 	Content string

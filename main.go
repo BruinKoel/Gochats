@@ -14,16 +14,17 @@ func main() {
 	if err != nil {
 		println(err)
 	}
-	db.AutoMigrate(&User{})
+	//db.AutoMigrate(&User{})
 
 	// Add table suffix when creating tables
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&User{})
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&message{})
+
+	daan := User{Name: kek, ID: 1}
+	db.AutoMigrate().table(&User{}, &Message{})
 
 	r.GET("/ping", func(c *gin.Context) {
 
 		c.JSON(200, gin.H{
-			"message": "pong",
+			"Message": "pong",
 		})
 	})
 
